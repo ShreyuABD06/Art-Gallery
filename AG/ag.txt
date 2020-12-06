@@ -1,0 +1,9 @@
+create table gallery(galleryId int auto_increment primary key,galleryName varchar(40),location varchar(40),entranceFee double,phoneNo varchar(11) unique,openTime time,closeTime time,unique (galleryName,location));
+
+create table gallerySections(gsId int auto_increment primary key,gsName varchar(40) unique);
+
+create table arts(artId int auto_increment primary key,galleryId int,artName varchar(40) unique,artistName varchar(80),photoFlag enum('YES','NO'),typeOfArt varchar(80),price double,gsId int,foreign key(galleryId) references gallery(galleryId),foreign key(gsId) references gallerySections(gsId));
+
+create table visits(visitId int auto_increment primary key,galleryId int,artId int,date date,noOfVisitors int,unique(galleryId,artId),foreign key(galleryId) references gallery(galleyId),foreign key(artId) references arts(artId));
+
+
